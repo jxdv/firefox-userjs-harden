@@ -171,7 +171,7 @@ def get_harden_settings():
 
 def harden_profile(ff_profile):
 	user_js_file = "user.js"
-	user_js_path = os.path.join(ff_profile, "user.js")
+	user_js_path = os.path.join(ff_profile, user_js_file)
 
 	# User can either overwrite or create a new user.js file if it already exists
 	if os.path.isfile(user_js_path):
@@ -217,7 +217,7 @@ def harden():
 		sys.stderr.write(Color.RED + "[-] Failed to find any FireFox profiles..\n" + Color.RESET)
 		sys.exit(1)
 
-	# Make the user choose which FireFox profile is gonna be hardened if there's > 1
+	# Make the user choose which FireFox profile is going to be hardened if there's > 1
 	if len(ff_profiles) > 1:
 		print("-" * 80)
 		print(Color.GREEN + "[+] Multiple FireFox profiles found:" + Color.RESET)
