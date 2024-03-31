@@ -124,7 +124,7 @@ def print_logo():
 
                                                   
 WARNING: Hardening settings may break some site functionalities..
-You should carefully go through `FIREFOX_CONFIG_SETTINGS` and comment out settings you don't want to use!
+You should carefully go through `FIREFOX_CONFIG_SETTINGS` and comment out settings you don't want to use
 	""")
 
 
