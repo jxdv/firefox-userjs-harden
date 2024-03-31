@@ -150,7 +150,10 @@ def get_ff_profiles(ff_config_path):
 	subfolders = [f.path for f in os.scandir(ff_config_path) if f.is_dir()]
 
 	for folder in subfolders:
-		if folder.endswith(".default") or "profile" in folder:
+		folder_name = folder.split("/")[-1]
+		has_profile_uid = len(folder_name.split(".")[0]) == 8
+		endswith_default_or_profile = folder.endswith(".default") or folder.endswith("profile")
+		if has_profile_uid or endswith_default_or_profile:
 			ff_profiles.append(folder)
 
 	return ff_profiles
@@ -216,6 +219,10 @@ def harden():
 	if not ff_profiles:
 		sys.stderr.write(Color.RED + "[-] Failed to find any FireFox profiles..\n" + Color.RESET)
 		sys.exit(1)
+
+	# Assign the one and only profile
+	if len(ff_profiles) == 1:
+		profile = ff_profiles[0]
 
 	# Make the user choose which FireFox profile is going to be hardened if there's > 1
 	if len(ff_profiles) > 1:
